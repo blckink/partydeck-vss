@@ -300,7 +300,7 @@ impl PartyApp {
             "2P Vertical Splitscreen"
         );
         if two_player_vertical_checkbox.hovered() {
-            self.infotext = "Splits the screen vertically instead of horizontally if exactly 2 Players are added.";
+            self.infotext = "Splits the screen vertically instead of horizontally if exactly 2 Players are added.".to_string();
         }
         if force_sdl2_check.hovered() {
             self.infotext = "Forces games to use the version of SDL2 included in the Steam Runtime. Only works on native Linux games, may fix problematic game controller support (incorrect mappings) in some games, may break others. If unsure, leave this unchecked.".to_string();
