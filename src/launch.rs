@@ -94,8 +94,8 @@ pub fn launch_from_handler(
     for (i, p) in players.iter().enumerate() {
         let path_prof = &format!("{party}/profiles/{}", p.profname.as_str());
         let path_save = &format!("{path_prof}/saves/{}", h.uid.as_str());
-        let is_vertical = players.len() == 2 && options.two_player_vertical_splitscreen;
-        let (gsc_width, gsc_height) = get_instance_resolution(players.len(), i, width, height);
+        let is_vertical = players.len() == 2 && cfg.two_player_vertical_splitscreen;
+        let (gsc_width, gsc_height) = get_instance_resolution(players.len(), i, width, height, is_vertical);
 
         if gsc_height < 600 && res_warn {
             msg(
@@ -245,8 +245,8 @@ pub fn launch_executable(
 
     cmd.push_str(&format!("cd \"{gamedir}\"; "));
     for (i, p) in players.iter().enumerate() {
-        let is_vertical = players.len() == 2 && options.two_player_vertical_splitscreen;
-        let (gsc_width, gsc_height) = get_instance_resolution(players.len(), i, width, height);
+        let is_vertical = players.len() == 2 && cfg.two_player_vertical_splitscreen;
+        let (gsc_width, gsc_height) = get_instance_resolution(players.len(), i, width, height, is_vertical);
 
         if gsc_height < 600 && res_warn {
             msg(
