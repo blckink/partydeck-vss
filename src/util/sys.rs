@@ -39,10 +39,19 @@ pub fn get_instance_resolution(
     i: usize,
     basewidth: u32,
     baseheight: u32,
+    vertical_2p: bool,
 ) -> (u32, u32) {
     let (w, h) = match playercount {
         1 => (basewidth, baseheight),
-        2 => (basewidth, baseheight / 2),
+        2 => {
+            if vertical_2p {
+                // Vertikaler Splitscreen: halbe Breite, volle Höhe
+                (basewidth / 2, baseheight)
+            } else {
+                // Standard: volle Breite, halbe Höhe
+                (basewidth, baseheight / 2)
+            }
+        }
         3 => {
             if i == 0 {
                 (basewidth, baseheight / 2)
