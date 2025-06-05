@@ -12,6 +12,7 @@ pub struct PartyConfig {
     pub render_scale: i32,
     pub gamescope_sdl_backend: bool,
     pub proton_version: String,
+    pub two_player_vertical_splitscreen: bool,
 }
 
 pub fn load_cfg() -> PartyConfig {
@@ -29,6 +30,7 @@ pub fn load_cfg() -> PartyConfig {
         render_scale: 100,
         gamescope_sdl_backend: true,
         proton_version: "".to_string(),
+        two_player_vertical_splitscreen: false,
     }
 }
 
