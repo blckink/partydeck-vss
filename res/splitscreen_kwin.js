@@ -1,3 +1,14 @@
+var flagPath = Qt.homePath() + "/.local/share/partydeck/splitscreen_vertical.flag";
+
+function fileExists(path) {
+    var file = new QFile(path);
+    var exists = file.exists();
+    file.close();
+    return exists;
+}
+var verticalSplitscreen = fileExists(flagPath);
+print("Vertical flag detected: " + verticalSplitscreen);
+
 scrwidth = workspace.activeScreen.geometry.width;
 scrheight = workspace.activeScreen.geometry.height;
 
@@ -39,12 +50,19 @@ function gamescopeSplitscreen(){
             var Xsize = Xsize_1p;
             var Ysize = Ysize_1p;
             break;
-        case 2:
+    case 2:
+        if (verticalSplitscreen) {
+            var Xpos = [0, scrwidth/2];
+            var Ypos = [0, 0];
+            var Xsize = [scrwidth/2, scrwidth/2];
+            var Ysize = [scrheight, scrheight];
+        } else {
             var Xpos = Xpos_2p;
             var Ypos = Ypos_2p;
             var Xsize = Xsize_2p;
             var Ysize = Ysize_2p;
-            break;
+        }
+        break;
         case 3:
             var Xpos = Xpos_3p;
             var Ypos = Ypos_3p;
