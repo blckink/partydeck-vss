@@ -44,53 +44,49 @@ Ypos_4p = [0, 0, scrheight / 2, scrheight / 2];
 Xsize_4p = [scrwidth / 2, scrwidth / 2, scrwidth / 2, scrwidth / 2];
 Ysize_4p = [scrheight / 2, scrheight / 2, scrheight / 2, scrheight / 2];
 
-function gamescopeSplitscreen(){
+function gamescopeSplitscreen() {
     var allClients = workspace.windowList();
-    var gamescopeClients = []
+    var gamescopeClients = [];
 
-    for (var i = 0; i < allClients.length; i++){
-        if (allClients[i].resourceClass == 'gamescope'){
+    for (var i = 0; i < allClients.length; i++) {
+        if (allClients[i].resourceClass == 'gamescope') {
             gamescopeClients.push(allClients[i]);
         }
     }
-    switch (gamescopeClients.length){
+
+    var Xpos, Ypos, Xsize, Ysize;
+
+    switch (gamescopeClients.length) {
         case 0:
             return;
         case 1:
-            var Xpos = Xpos_1p;
-            var Ypos = Ypos_1p;
-            var Xsize = Xsize_1p;
-            var Ysize = Ysize_1p;
+            Xpos = Xpos_1p;
+            Ypos = Ypos_1p;
+            Xsize = Xsize_1p;
+            Ysize = Ysize_1p;
             break;
-    case 2:
-        if (verticalSplitscreen) {
-            var Xpos = [0, scrwidth/2];
-            var Ypos = [0, 0];
-            var Xsize = [scrwidth/2, scrwidth/2];
-            var Ysize = [scrheight, scrheight];
-        } else {
-            var Xpos = Xpos_2p;
-            var Ypos = Ypos_2p;
-            var Xsize = Xsize_2p;
-            var Ysize = Ysize_2p;
-        }
-        break;
+        case 2:
+            Xpos = Xpos_2p;
+            Ypos = Ypos_2p;
+            Xsize = Xsize_2p;
+            Ysize = Ysize_2p;
+            break;
         case 3:
-            var Xpos = Xpos_3p;
-            var Ypos = Ypos_3p;
-            var Xsize = Xsize_3p;
-            var Ysize = Ysize_3p;
+            Xpos = Xpos_3p;
+            Ypos = Ypos_3p;
+            Xsize = Xsize_3p;
+            Ysize = Ysize_3p;
             break;
         case 4:
-            var Xpos = Xpos_4p;
-            var Ypos = Ypos_4p;
-            var Xsize = Xsize_4p;
-            var Ysize = Ysize_4p;
+            Xpos = Xpos_4p;
+            Ypos = Ypos_4p;
+            Xsize = Xsize_4p;
+            Ysize = Ysize_4p;
             break;
     }
 
-    for (var i = 0; i < gamescopeClients.length; i++){
-        gamescopeClients[i].noBorder = true;
+    for (var i = 0; i < gamescopeClients.length; i++) {
+        gamescopeClients[i].noBorder = true; // Set borderless
         gamescopeClients[i].frameGeometry = {
             x: Xpos[i],
             y: Ypos[i],
