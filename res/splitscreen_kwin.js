@@ -46,7 +46,7 @@ Ysize_4p = [scrheight / 2, scrheight / 2, scrheight / 2, scrheight / 2];
 
 function gamescopeSplitscreen() {
     var allClients = workspace.windowList();
-    var gamescopeClients = [];
+    var gamescopeClients = []
 
     for (var i = 0; i < allClients.length; i++) {
         if (allClients[i].resourceClass == 'gamescope') {
@@ -54,7 +54,7 @@ function gamescopeSplitscreen() {
         }
     }
 
-    var Xpos, Ypos, Xsize, Ysize;
+    //var Xpos, Ypos, Xsize, Ysize;
 
     switch (gamescopeClients.length) {
         case 0:
@@ -92,6 +92,8 @@ function gamescopeSplitscreen() {
             y: Ypos[i],
             width: Xsize[i],
             height: Ysize[i]
+            print("x:" + Xpos[i]);
+
         };
     }
 }
