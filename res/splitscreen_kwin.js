@@ -6,31 +6,43 @@ function fileExists(path) {
     file.close();
     return exists;
 }
+
 var verticalSplitscreen = fileExists(flagPath);
 print("Vertical flag detected: " + verticalSplitscreen);
 
 scrwidth = workspace.activeScreen.geometry.width;
 scrheight = workspace.activeScreen.geometry.height;
 
-Xpos_1p = [0]
-Ypos_1p = [0]
-Xsize_1p = [scrwidth]
-Ysize_1p = [scrheight]
+// 1-Player Layout
+Xpos_1p = [0];
+Ypos_1p = [0];
+Xsize_1p = [scrwidth];
+Ysize_1p = [scrheight];
 
-Xpos_2p = [0, 0]
-Ypos_2p = [0, (scrheight / 2)]
-Xsize_2p = [scrwidth, scrwidth]
-Ysize_2p = [(scrheight / 2), (scrheight / 2)]
+// 2-Player Layout
+if (verticalSplitscreen) {
+    Xpos_2p = [0, scrwidth / 2];
+    Ypos_2p = [0, 0];
+    Xsize_2p = [scrwidth / 2, scrwidth / 2];
+    Ysize_2p = [scrheight, scrheight];
+} else {
+    Xpos_2p = [0, 0];
+    Ypos_2p = [0, scrheight / 2];
+    Xsize_2p = [scrwidth, scrwidth];
+    Ysize_2p = [scrheight / 2, scrheight / 2];
+}
 
-Xpos_3p = [0, 0, (scrwidth / 2)]
-Ypos_3p = [0, (scrheight / 2), (scrheight / 2)]
-Xsize_3p = [scrwidth, (scrwidth / 2), (scrwidth / 2)]
-Ysize_3p = [(scrheight / 2), (scrheight / 2), (scrheight / 2)]
+// 3-Player Layout
+Xpos_3p = [0, 0, scrwidth / 2];
+Ypos_3p = [0, scrheight / 2, scrheight / 2];
+Xsize_3p = [scrwidth, scrwidth / 2, scrwidth / 2];
+Ysize_3p = [scrheight / 2, scrheight / 2, scrheight / 2];
 
-Xpos_4p = [0, (scrwidth / 2), 0, (scrwidth / 2)]
-Ypos_4p = [0, 0, (scrheight / 2), (scrheight / 2)]
-Xsize_4p = [(scrwidth / 2), (scrwidth / 2), (scrwidth / 2), (scrwidth / 2)]
-Ysize_4p = [(scrheight / 2), (scrheight / 2), (scrheight / 2), (scrheight / 2)]
+// 4-Player Layout
+Xpos_4p = [0, scrwidth / 2, 0, scrwidth / 2];
+Ypos_4p = [0, 0, scrheight / 2, scrheight / 2];
+Xsize_4p = [scrwidth / 2, scrwidth / 2, scrwidth / 2, scrwidth / 2];
+Ysize_4p = [scrheight / 2, scrheight / 2, scrheight / 2, scrheight / 2];
 
 function gamescopeSplitscreen(){
     var allClients = workspace.windowList();
