@@ -91,18 +91,7 @@ pub fn launch_from_handler(
     let width = (screen_width as f32 * scale_factor) as u32;
     let height = (screen_height as f32 * scale_factor) as u32;
     let is_vertical = players.len() == 2 && cfg.two_player_vertical_splitscreen;
-    
-    // FLAG FILE LOGIC BEGIN
-    let home_dir = env::var("HOME").unwrap_or("".to_string());
-    let flag_path = format!("{}/.local/share/partydeck/splitscreen_vertical.flag", home_dir);
-    
-    if is_vertical {
-        let _ = fs::write(&flag_path, b"1");
-    } else {
-        if std::path::Path::new(&flag_path).exists() {
-            let _ = fs::remove_file(&flag_path);
-        }
-    }
+
     cmd.push_str(&format!("cd \"{gamedir}\"; "));
     
     for (i, p) in players.iter().enumerate() {
@@ -257,17 +246,6 @@ pub fn launch_executable(
     let height = (screen_height as f32 * scale_factor) as u32;
     let is_vertical = players.len() == 2 && cfg.two_player_vertical_splitscreen;
     
-    // FLAG FILE LOGIC BEGIN
-    let home_dir = env::var("HOME").unwrap_or("".to_string());
-    let flag_path = format!("{}/.local/share/partydeck/splitscreen_vertical.flag", home_dir);
-    
-    if is_vertical {
-        let _ = fs::write(&flag_path, b"1");
-    } else {
-        if std::path::Path::new(&flag_path).exists() {
-            let _ = fs::remove_file(&flag_path);
-        }
-    }
     cmd.push_str(&format!("cd \"{gamedir}\"; "));
     for (i, p) in players.iter().enumerate() {
         let (gsc_width, gsc_height) = get_instance_resolution(players.len(), i, width, height, is_vertical);
