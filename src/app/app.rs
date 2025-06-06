@@ -649,7 +649,12 @@ impl PartyApp {
         let cmd = launch_from_handler(handler, &self.pads, &self.players, &self.options)?;
         println!("\nCOMMAND:\n{}\n", cmd);
 
-        kwin_dbus_start_script(PATH_RES.join("splitscreen_kwin.js"))?;
+        let kwin_script = if self.options.two_player_vertical_splitscreen {
+            PATH_RES.join("splitscreen_vertical_kwin.js")
+        } else {
+            PATH_RES.join("splitscreen_horizontal_kwin.js")
+        };
+        kwin_dbus_start_script(kwin_script)?;
 
         std::process::Command::new("sh")
             .arg("-c")
@@ -667,7 +672,12 @@ impl PartyApp {
 
         let cmd = launch_executable(path, &self.pads, &self.players, &self.options)?;
 
-        kwin_dbus_start_script(PATH_RES.join("splitscreen_kwin.js"))?;
+        let kwin_script = if self.options.two_player_vertical_splitscreen {
+            PATH_RES.join("splitscreen_vertical_kwin.js")
+        } else {
+            PATH_RES.join("splitscreen_horizontal_kwin.js")
+        };
+        kwin_dbus_start_script(kwin_script)?;
 
         std::process::Command::new("sh")
             .arg("-c")
